@@ -13,6 +13,7 @@ let index = (req, res) => {
 
 }
 
+
 let guardar = (req, res) => {
 
     let habitacion = new Habitacion({

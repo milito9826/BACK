@@ -152,7 +152,7 @@ let login = (req, res) => {
 
         let token = jwt.sign({
             data: usuario
-        }, process.env.SECRET, { expiresIn: '4h' });
+        }, process.env.SECRET, { expiresIn: '1d' });
 
         res.json({
             ok: true,

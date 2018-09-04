@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 
 var motelsSchema = new Schema({
 
-    nitMotel: {
-        type: String,
-        required: [true, "El nit. es requerido."]
+    idMotel: {
+        type: Number,
+        required: [true, "El id. es requerido."]
     },
     nombreMotel: {
         type: String,
@@ -36,17 +36,6 @@ var motelsSchema = new Schema({
         type: String,
         required: false
     },
-
-    // longitudMotel: {
-    //     type: String,
-    //     required: true
-    // },
-
-    // latitudMotel: {
-    //     type: String,
-    //     required: true
-    // },
-
     estadoMotel: {
         type: Boolean,
         required: false,
@@ -54,4 +43,4 @@ var motelsSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Motel', motelsSchema, "motel");
+module.exports = mongoose.model('Motel', motelsSchema);

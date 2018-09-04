@@ -3,21 +3,21 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var reservaSchema = new Schema({
-    codigoReserva: {
+    idReserva: {
         type: Number,
         required: [true, "El id. de la Reserva es requerido"]
     },
-    documentoUsuario: {
-        type: mongoose.Types.ObjectId,
-        ref : "usuario"
+    idUsuario: {
+        type: String,
+        required: [true, "La identificación del usuario es requerida."]
     },
-    numeroHabitacion: {
-        type: mongoose.Types.ObjectId,
-        ref : "habitacion"
+    idHabitacion: {
+        type: String,
+        required: [true, "La identificación de la habitación es requerida."]
     },
-    nitMotel: {
-        type: mongoose.Types.ObjectId,
-        ref: "motel"
+    idMotel: {
+        type: String,
+        required: [true, "El id. del motel es requerido."]
     },
     fechaIngresoReserva: {
         type: Date,

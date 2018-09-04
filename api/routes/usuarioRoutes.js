@@ -6,14 +6,14 @@ const { auth } = require('./../middleware/autenticacion')
 
 var router = express.Router();
 
-router.get("/usuario", auth, usuarioController.index);
-router.get("/usuarioInactivo", auth, usuarioController.indexInactivo);
-router.post("/usuario", auth, usuarioController.guardar);
-router.get("/usuario/:documentoUsuario", auth, usuarioController.ver);
-router.put("/usuario/:documentoUsuario", auth, usuarioController.modificar);
-router.delete("/usuario/:documentoUsuario/:estadoUsuario", auth, usuarioController.eliminar);
+router.get("/usuario",  usuarioController.index);
+router.get("/usuarioInactivo",  usuarioController.indexInactivo);
+router.post("/usuario",  usuarioController.guardar);
+router.get("/usuario/:documentoUsuario",  usuarioController.ver);
+router.put("/usuario/:documentoUsuario",  usuarioController.modificar);
+router.delete("/usuario/:documentoUsuario/:estadoUsuario", usuarioController.eliminar);
 
-router.post("/login", usuarioController.login);
+router.post("/login",  usuarioController.login);
 
 
 module.exports = router;

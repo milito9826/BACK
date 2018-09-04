@@ -9,5 +9,4 @@ app.use("/api", require("./descuentoRoutes"));
 app.use("/api", require("./habitacionRoutes"));
 
 
-
 module.exports = app;

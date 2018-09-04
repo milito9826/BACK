@@ -3,20 +3,7 @@ var bcrypt = require("bcrypt");
 
 let index = (req, res) => {
 
-    Motel.find({ estadoMotel: true }).exec((err, datos) => {
-
-        return res.json({
-            datos
-        });
-
-    });
-
-}
-
-let indexInactivo = (req, res) => {
-
-
-    Motel.find({ estadoMotel: false }).exec((err, datos) => {
+    Motel.find({}).exec((err, datos) => {
 
         return res.json({
             datos
@@ -29,7 +16,7 @@ let indexInactivo = (req, res) => {
 let guardar = (req, res) => {
 
     let motel = new Motel({
-        nitMotel: req.body.nitMotel,
+        idMotel: req.body.idMotel,
         nombreMotel: req.body.nombreMotel,
         direccionMotel: req.body.direccionMotel,
         telefonoMotel: req.body.telefonoMotel,
@@ -56,7 +43,7 @@ let guardar = (req, res) => {
 }
 
 let ver = (req, res) => {
-    Motel.findById(req.params.nitMotel).exec((err, datos) => {
+    Motel.findById(req.params.id_motel).exec((err, datos) => {
 
         return res.json({
             datos
@@ -69,7 +56,7 @@ let ver = (req, res) => {
 let modificar = (req, res) => {
 
     let motel = {
-        nitMotel: req.body.nitMotel,
+        idMotel: req.body.idMotel,
         nombreMotel: req.body.nombreMotel,
         direccionMotel: req.body.direccionMotel,
         telefonoMotel: req.body.telefonoMotel,
@@ -78,9 +65,7 @@ let modificar = (req, res) => {
 
     }
 
-    console.log(motel);
-
-    Motel.findByIdAndUpdate(req.params._id, nitMotel, motel, {}, (err, motelNew) => {
+    Motel.findByIdAndUpdate(req.params.id, idMotel, {}, (err, motelNew) => {
 
         if (err) {
             return res.status(401).json({
@@ -99,7 +84,7 @@ let modificar = (req, res) => {
 
 let eliminar = (req, res) => {
 
-    Motel.findByIdAndUpdate(req.params.nitMotel, { estadoMotel: req.params.estadoMotel }, { new: true }, (err, motelNew) => {
+    Motel.findByIdAndUpdate(req.params.idMotel, { estado: req.params.estadoMotel }, { new: true }, (err, usuarioNew) => {
 
         if (err) {
             return res.status(401).json({
@@ -119,7 +104,6 @@ let eliminar = (req, res) => {
 
 module.exports = {
     index,
-    indexInactivo,
     guardar,
     ver,
     modificar,

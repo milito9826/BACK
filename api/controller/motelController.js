@@ -78,10 +78,8 @@ let modificar = (req, res) => {
 
     }
 
-    console.log(motel);
-
-    Motel.findByIdAndUpdate(req.params._id, nitMotel, motel, {}, (err, motelNew) => {
-
+    Motel.findByIdAndUpdate(req.params.nitMotel, motel, {new: true}, (err, motelNew) => {
+        
         if (err) {
             return res.status(401).json({
                 ok: false,
@@ -92,7 +90,9 @@ let modificar = (req, res) => {
         return res.json({
             ok: true,
             motelNew
+           
         });
+        console.log('HERMOSO', motelNew);
     });
 
 }

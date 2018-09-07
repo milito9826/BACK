@@ -1,6 +1,7 @@
-var Usuario = require("./../models/usuarioModels");
-var bcrypt = require("bcrypt");
-var jwt = require("jsonwebtoken");
+const Usuario = require("./../models/usuarioModels");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 
 
 let index = (req, res) => {
@@ -161,8 +162,40 @@ let login = (req, res) => {
         });
 
     });
+   
+}
+
+
+let enviarCorreo = (req, res) => {
+
+        
+    formulario = req.body;
+    var transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port : 465,
+        secure: true,
+        auth: {
+            user: 'klassup@gmail.com', // Cambialo por tu email
+            pass: 'Iamadolf0!' // Cambialo por tu password
+        }
+    });
+    const mailOptions = {
+        from: '"Motels Inn" <klassup@gmail.com>', //sender
+        to: formulario.verCorreo, // Cambia esta parte por el destinatario
+        subject: "Correo Prueba",
+        html: `
+            <strong>Esto es un correo prueba:</strong> 
+              `
+    };
+    transporter.sendMail(mailOptions, function(err, info) {
+        if (err)
+            console.log(err)
+        else
+            console.log(info);
+    });
 
 }
+
 
 
 module.exports = {
@@ -172,6 +205,7 @@ module.exports = {
     ver,
     modificar,
     eliminar,
-    login
+    login,
+    enviarCorreo
 
 }

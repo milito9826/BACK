@@ -6,7 +6,6 @@ var usuarioSchema = new Schema({
 
     documentoUsuario: {
         type: String,
-        required: [true, "El Doc. es requerido."]
     },
 
     nombreUsuario: {

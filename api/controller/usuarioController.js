@@ -166,6 +166,46 @@ let login = (req, res) => {
 }
 
 
+
+
+let buscarUsuario = (req, res) => {
+
+    Usuario.findOne({ correoUsuario: req.body.correoUsuario }, (err, usuario) => {
+       console.log(req.body.correoUsuario);
+        if (err) {
+            return res.status(500).json({
+                ok: false,
+                err
+            });
+        }
+
+        if (!usuario) {
+            return res.status(404).json({
+                ok: false,
+                men: "Usuario no existe"
+            });
+        }
+
+        res.json({
+            ok: true,
+            usuario,
+        });
+
+    });
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
 let enviarCorreo = (req, res) => {
 
         
@@ -206,6 +246,7 @@ module.exports = {
     modificar,
     eliminar,
     login,
-    enviarCorreo
+    enviarCorreo,
+    buscarUsuario
 
 }

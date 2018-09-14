@@ -16,13 +16,13 @@ let index = (req, res) => {
 let guardar = (req, res) => {
 
     let habitacion = new Habitacion({
-        idHabitacion: req.body.idHabitacion,
-        tipoHabitacion: req.body.tipoHabitacion,
         numeroHabitacion: req.body.numeroHabitacion,
+        tipoHabitacion: req.body.tipoHabitacion,
         servicioHabitacion: req.body.servicioHabitacion,
-        fotoHabitacion: req.body.fotoHabitacion,
         precioHabitacion: req.body.precioHabitacion,
-        descuentoHabitacion: req.body.descuentoHabitacion
+        descuentoHabitacion: req.body.descuentoHabitacion,
+        fotoHabitacion: req.body.fotoHabitacion
+           
     });
 
     Habitacion.save((err, habitacionNew) => {

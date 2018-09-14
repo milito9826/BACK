@@ -127,7 +127,7 @@ let eliminar = (req, res) => {
 
 let login = (req, res) => {
 
-    console.log(req.body);
+    
     Usuario.findOne({ correoUsuario: req.body.correoUsuario }, (err, usuario) => {
 
         if (err) {
@@ -175,12 +175,12 @@ let enviarCorreo = (req, res) => {
         port : 465,
         secure: true,
         auth: {
-            user: 'klassup@gmail.com', // Cambialo por tu email
-            pass: 'Iamadolf0!' // Cambialo por tu password
+            user: 'motelsinn@gmail.com', // Cambialo por tu email
+            pass: 'Motelsinn2018*' // Cambialo por tu password
         }
     });
     const mailOptions = {
-        from: '"Motels Inn" <klassup@gmail.com>', //sender
+        from: '"Motels Inn" <motelsinn@gmail.com>', //sender
         to: formulario.verCorreo, // Cambia esta parte por el destinatario
         subject: "Correo Prueba",
         html: `
@@ -189,9 +189,9 @@ let enviarCorreo = (req, res) => {
     };
     transporter.sendMail(mailOptions, function(err, info) {
         if (err)
-            console.log(err)
+            alert(err)
         else
-            console.log(info);
+            alert("Correo Enviado");
     });
 
 }

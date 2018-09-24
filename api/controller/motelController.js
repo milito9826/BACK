@@ -92,7 +92,7 @@ let modificar = (req, res) => {
             motelNew
            
         });
-        console.log('HERMOSO', motelNew);
+        
     });
 
 }

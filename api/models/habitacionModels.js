@@ -14,7 +14,7 @@ var habitacionSchema = new Schema({
     },
     
     servicioHabitacion: {
-        type: String,
+        type: Array,
         required: [true, "El Servicio de la habitación es requerido."]
     },
     puntuacionHabitacion: {
@@ -27,7 +27,7 @@ var habitacionSchema = new Schema({
     },
     fotoHabitacion: {
         type: String,
-        required: [true, "La foto de la habitación es requerida."]
+        required: false
     },
     
     precioHabitacion: {
@@ -40,7 +40,8 @@ var habitacionSchema = new Schema({
     },
     estadoHabitacion: {
         type: Boolean,
-        required: false
+        required: false,
+        default: true
     },
    
 });

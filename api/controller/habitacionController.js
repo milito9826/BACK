@@ -3,7 +3,20 @@ var bcrypt = require("bcrypt");
 
 let index = (req, res) => {
 
-    Habitacion.find({}).exec((err, datos) => {
+    Habitacion.find({ estadoHabitacion: true }).exec((err, datos) => {
+
+        return res.json({
+            datos
+        });
+
+    });
+
+}
+
+let indexInactivo = (req, res) => {
+
+
+    Habitacion.find({ estadoHabitacion: false }).exec((err, datos) => {
 
         return res.json({
             datos
@@ -22,10 +35,10 @@ let guardar = (req, res) => {
         precioHabitacion: req.body.precioHabitacion,
         descuentoHabitacion: req.body.descuentoHabitacion,
         fotoHabitacion: req.body.fotoHabitacion
-           
+
     });
 
-    Habitacion.save((err, habitacionNew) => {
+    habitacion.save((err, habitacionNew) => {
 
         if (err) {
             return res.status(401).json({
@@ -43,7 +56,7 @@ let guardar = (req, res) => {
 }
 
 let ver = (req, res) => {
-    Habitacion.findById(req.params.id).exec((err, datos) => {
+    Habitacion.findById(req.params._id).exec((err, datos) => {
 
         return res.json({
             datos
@@ -54,8 +67,9 @@ let ver = (req, res) => {
 }
 
 let modificar = (req, res) => {
-    let Habitacion = {
-        idHabitacion: req.body.idHabitacion,
+
+    let habitacion = {
+        numeroHabitacion: req.body.numeroHabitacion,
         tipoHabitacion: req.body.tipoHabitacion,
         numeroHabitacion: req.body.numeroHabitacion,
         servicioHabitacion: req.body.servicioHabitacion,
@@ -64,7 +78,7 @@ let modificar = (req, res) => {
         descuentoHabitacion: req.body.descuentoHabitacion
     }
 
-    Habitacion.findByIdAndUpdate(req.params.idHabitacion, {}, (err, usuarioNew) => {
+    Habitacion.findByIdAndUpdate(req.params._id, habitacion, { new: true }, (err, habitacionNew) => {
 
         if (err) {
             return res.status(401).json({
@@ -75,7 +89,7 @@ let modificar = (req, res) => {
 
         return res.json({
             ok: true,
-            HabitacionNew
+            habitacionNew
         });
     });
 
@@ -85,7 +99,7 @@ let modificar = (req, res) => {
 
 let eliminar = (req, res) => {
 
-    Habitacion.findByIdAndUpdate(req.params.idHabitacion, { estado: req.params.estadoHabitacion }, { new: true }, (err, habitacionNew) => {
+    Habitacion.findByIdAndUpdate(req.params._id, { estadoHabitacion: req.params.estadoHabitacion }, { new: true }, (err, habitacionNew) => {
 
         if (err) {
             return res.status(401).json({
@@ -105,6 +119,7 @@ let eliminar = (req, res) => {
 
 module.exports = {
     index,
+    indexInactivo,
     guardar,
     ver,
     modificar,

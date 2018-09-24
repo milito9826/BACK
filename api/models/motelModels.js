@@ -37,15 +37,15 @@ var motelsSchema = new Schema({
         required: false
     },
 
-    // longitudMotel: {
-    //     type: String,
-    //     required: true
-    // },
+    longitudMotel: {
+        type: String,
+        required: true
+    },
 
-    // latitudMotel: {
-    //     type: String,
-    //     required: true
-    // },
+    latitudMotel: {
+        type: String,
+        required: true
+    },
 
     estadoMotel: {
         type: Boolean,

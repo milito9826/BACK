@@ -1,6 +1,7 @@
-var Usuario = require("./../models/usuarioModels");
-var bcrypt = require("bcrypt");
-var jwt = require("jsonwebtoken");
+const Usuario = require("./../models/usuarioModels");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 
 
 let index = (req, res) => {
@@ -126,7 +127,7 @@ let eliminar = (req, res) => {
 
 let login = (req, res) => {
 
-    console.log(req.body);
+    
     Usuario.findOne({ correoUsuario: req.body.correoUsuario }, (err, usuario) => {
 
         if (err) {
@@ -161,8 +162,40 @@ let login = (req, res) => {
         });
 
     });
+   
+}
+
+
+let enviarCorreo = (req, res) => {
+
+        
+    formulario = req.body;
+    var transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port : 465,
+        secure: true,
+        auth: {
+            user: 'motelsinn@gmail.com', // Cambialo por tu email
+            pass: 'Motelsinn2018*' // Cambialo por tu password
+        }
+    });
+    const mailOptions = {
+        from: '"Motels Inn" <motelsinn@gmail.com>', //sender
+        to: formulario.verCorreo, // Cambia esta parte por el destinatario
+        subject: "Correo Prueba",
+        html: `
+            <strong>Esto es un correo prueba:</strong> 
+              `
+    };
+    transporter.sendMail(mailOptions, function(err, info) {
+        if (err)
+            alert(err)
+        else
+            alert("Correo Enviado");
+    });
 
 }
+
 
 
 module.exports = {
@@ -172,6 +205,7 @@ module.exports = {
     ver,
     modificar,
     eliminar,
-    login
+    login,
+    enviarCorreo
 
 }

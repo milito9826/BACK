@@ -19,6 +19,7 @@ var reservaSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "motel"
     },
+    
     fechaIngresoReserva: {
         type: Date,
         required: [true, "La Fecha de ingreso es requerida."]

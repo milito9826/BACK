@@ -1,11 +1,23 @@
 require('./config/config');
 
 const express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+//const exphbs = require('express-handlebars');
+const nodemailer = require('nodemailer');
+const mongoose = require('mongoose');
+const path = require('path');
+var cors = require('cors');
 
 
 const app = express();
+
+// // View engine Setup
+// app.engine('handlebars', exphbs());
+// app.set('view engine', 'handlebars');
+
+// // Static Folder
+// app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -14,10 +26,12 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get('/', function(req, res) {
     res.send('Bienvenido al API REST de MOTELSINN');

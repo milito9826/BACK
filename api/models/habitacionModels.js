@@ -3,21 +3,19 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var habitacionSchema = new Schema({
-    idHabitacion: {
-        type: Number,
-        required: [true, "El id. es requerido."]
+
+    numeroHabitacion: {
+        type: String,
+        required: [true, "El numero es requerido."]
     },
     tipoHabitacion: {
         type: String,
         required: [true, "El tipo de habitación es requerido."]
     },
-    numeroHabitacion: {
-        type: String,
-        required: [true, "El número de habitación es requerido."]
-    },
+    
     servicioHabitacion: {
-        type: String,
-        required: [true, "La comodidad de la habitación es requerida."]
+        type: Array,
+        required: [true, "El Servicio de la habitación es requerido."]
     },
     puntuacionHabitacion: {
         type: String,
@@ -29,12 +27,9 @@ var habitacionSchema = new Schema({
     },
     fotoHabitacion: {
         type: String,
-        required: [true, "La foto de la habitación es requerida."]
+        required: false
     },
-    idMotel: {
-        type: String,
-        required: [true, "El id. del motel es requerido."]
-    },
+    
     precioHabitacion: {
         type: Number,
         required: [true, "El precio de la habitación es requerido."]
@@ -45,8 +40,10 @@ var habitacionSchema = new Schema({
     },
     estadoHabitacion: {
         type: Boolean,
-        required: false
-    }
+        required: false,
+        default: true
+    },
+   
 });
 
-module.exports = mongoose.model('Habitacion', habitacionSchema);
+module.exports = mongoose.model('Habitacion', habitacionSchema, "habitacion");
